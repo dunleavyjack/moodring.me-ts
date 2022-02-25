@@ -1,0 +1,40 @@
+.home {
+    font-family: 'Abril Fatface', cursive;
+    color: white;
+    font-size: 32px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 20px;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.about {
+    font-family: 'Unna', serif;
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    cursor: pointer;
+    z-index: 999;
+}
+
+@media screen and (max-width: 600px) {
+    .home {
+        top: 21px;
+        font-size: 28px;
+    }
+
+    .about {
+        top: 21px;
+        right: 10px;
+        font-size: 15px;
+    }
+}
+
+.about:hover,
+.about:active {
+    border-bottom: 1px solid #ffffff;
+}
