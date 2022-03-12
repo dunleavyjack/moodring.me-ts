@@ -1,0 +1,36 @@
+body {
+    background-color: #becbfa;
+    color: white;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.page-container {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('../assets/pageAssets/topCornerVectorYellow.png'),
+        url('../assets/pageAssets/bottomRightVector.png');
+    background-position: top left, bottom right;
+    background-repeat: no-repeat;
+    background-size: 60vw, 100vw;
+}
+
+@media screen and (max-width: 700px) {
+    .page {
+        background-size: 90vw, 120vw;
+    }
+}
+
+.page-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+}
