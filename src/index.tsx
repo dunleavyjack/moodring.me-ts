@@ -4,7 +4,6 @@ import AppRouter from './router/AppRouter';
 // import { Provider } from 'react-redux';
 // import {createStore, compose} from 'redux';
 // import reducers from './redux/reducers'
-
 // import './styles/stylesheet.css';
 
 // declare global {
