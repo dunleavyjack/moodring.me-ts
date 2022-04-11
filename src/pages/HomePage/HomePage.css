@@ -38,12 +38,15 @@
     background-color: white;
     border: 1px solid white;
     color: #a0afe1;
+    cursor: pointer;
+    /* background: linear-gradient(to right, #1fd760 50%, white 50%); */
 }
 
 .demo-login-button {
     color: white;
     border: 1px solid white;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .demo-login-button:hover,
