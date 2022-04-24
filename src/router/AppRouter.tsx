@@ -9,7 +9,7 @@ import DashboardPage from '../pages/DashboardPage/DashboardPage';
 import DemoDashboardPage from '../pages/DemoDashboardPage/DemoDashboardPage';
 import AboutPage from '../pages/AboutPage/AboutPage';
 
-const AppRouter = (): JSX.Element => (
+const AppRouter: React.FC = () => (
     <BrowserRouter>
         <div className="page-container">
             <Navbar />

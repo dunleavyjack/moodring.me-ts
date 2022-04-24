@@ -5,7 +5,7 @@ import '../DashboardPage/DashboardPage.css';
 import AnalyzingSongs from '../../components/AnalyzingSongs/AnalyzingSongs';
 import { demoSongs, demoProfile } from '../../utils/demoSampleData';
 
-const DemoDashboardPage: React.FC = (): JSX.Element => {
+const DemoDashboardPage: React.FC = () => {
     // const [finishedLoading, setFinishedLoading] = useState<boolean>(false);
 
     // useEffect(() => {

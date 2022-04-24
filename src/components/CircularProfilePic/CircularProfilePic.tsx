@@ -1,13 +1,11 @@
 import React from 'react';
 import './CircularProfilePic.css';
 
-interface CircularProfilePicProps {
+interface Props {
     imageURL: string;
 }
 
-const CircularProfilePic: React.FC<CircularProfilePicProps> = ({
-    imageURL,
-}): JSX.Element => {
+const CircularProfilePic: React.FC<Props> = ({ imageURL }) => {
     return (
         <section className="circular-profile-picture">
             <img src={imageURL} alt="Circular profile" />

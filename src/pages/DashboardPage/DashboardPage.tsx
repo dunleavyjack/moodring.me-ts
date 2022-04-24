@@ -3,7 +3,7 @@ import LoadingAnimation from '../../components/LoadingAnimation/LoadingAnimation
 
 import './DashboardPage.css';
 
-const DashboardPage = () => {
+const DashboardPage: React.FC = () => {
     return (
         <main className="page-content">
             <LoadingAnimation />

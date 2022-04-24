@@ -9,7 +9,7 @@ const handleAboutClick = () => {
     window.location.href = './about';
 };
 
-const Navbar: React.FC = (): JSX.Element => {
+const Navbar: React.FC = () => {
     return (
         <nav>
             <h1 className="home" onClick={handleHomeClick}>

@@ -4,7 +4,7 @@ import analyzingMusicText from '../../assets/pageAssets/dashboard/analyzingMusic
 import backgroundRing from '../../assets/pageAssets/dashboard/albumCoverBackgroundRing.png';
 import './SongDisplay.css';
 
-interface SongDisplayProps {
+interface Props {
     song: {
         name: string;
         artist: string;
@@ -13,9 +13,9 @@ interface SongDisplayProps {
     };
 }
 
-const SongDisplay: React.FC<SongDisplayProps> = ({
+const SongDisplay: React.FC<Props> = ({
     song: { name, artist, album, albumCoverURL },
-}): JSX.Element => {
+}) => {
     console.log('this is the sooooon', name);
     return (
         <main className="page-content">

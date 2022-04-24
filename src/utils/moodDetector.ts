@@ -20,14 +20,14 @@ export const calculateMood = (songs: any) => {
     const key: number = getAverage(songs.map((song: any) => song.key));
 
     // Percent difference Object. Ex: {aboveAvg: true/false, value: x}
-    const valenceDifference = getValenceDifference(valence);
-    const energyDifference = getEnergyDifference(energy);
-    const danceabilityDifference = getDanceabilityDifference(danceability);
-    const acousticnessDifference = getAcousticnessDifference(acousticness);
-    const notatedKey = getNotatedKey(key);
+    const valenceDifference: string = getValenceDifference(valence);
+    const energyDifference: string = getEnergyDifference(energy);
+    const danceabilityDifference: string = getDanceabilityDifference(danceability);
+    const acousticnessDifference: string = getAcousticnessDifference(acousticness);
+    const notatedKey: string | undefined = getNotatedKey(key);
 
     // Sort differences to find the highest
-    const differenceArray = [
+    const differenceArray: string[] = [
         valenceDifference,
         energyDifference,
         danceabilityDifference,
@@ -36,10 +36,10 @@ export const calculateMood = (songs: any) => {
     // Get two moods with highest percent difference
     const firstMood: any = differenceArray[0];
     const secondMood: any = differenceArray[1];
-    const thirdMood: any = differenceArray[2];
-    const topMoodsOnly: any = [firstMood.mood, secondMood.mood];
-    const result: any = matchMood(topMoodsOnly);
-    const conjuction: any = getConjuction(topMoodsOnly);
+    const thirdMood: string = differenceArray[2];
+    const topMoodsOnly: string[] = [firstMood.mood, secondMood.mood];
+    const result: string = matchMood(topMoodsOnly);
+    const conjuction: string = getConjuction(topMoodsOnly);
 
     const resultArray: any = {
         name: result,
@@ -54,7 +54,7 @@ export const calculateMood = (songs: any) => {
     return resultArray;
 };
 
-const matchMood = (moodNames: any) => {
+const matchMood = (moodNames: any): string => {
     // Matching: Higher + Lower (Valence)
     if (
         moodNames.includes("more-happiness") &&
@@ -125,9 +125,10 @@ const matchMood = (moodNames: any) => {
     ) {
         return "sleepy";
     }
+    return "confused"
 };
 
-const getNotatedKey = (num: any) => {
+const getNotatedKey = (num: number): string => {
     switch (Math.round(num)) {
         case 0:
             return "C";
@@ -153,6 +154,8 @@ const getNotatedKey = (num: any) => {
             return "A#";
         case 11:
             return "B";
+        default:
+            return "C";
     }
 };
 

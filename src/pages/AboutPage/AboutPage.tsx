@@ -4,7 +4,7 @@ import './AboutPage.css';
 const { REACT_APP_TEST } = process.env;
 console.log(REACT_APP_TEST);
 
-const AboutPage: React.FC = (): JSX.Element => {
+const AboutPage: React.FC = () => {
     return (
         <main className="page-content">
             <h1>this is the about page helloooooo</h1>

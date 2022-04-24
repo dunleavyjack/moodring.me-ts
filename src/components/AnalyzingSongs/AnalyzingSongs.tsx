@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import SongDisplay from '../../components/SongDisplay/SongDisplay';
-import MoodDisplay from '../../components/MoodDisplay/MoodDisplay';
+import MoodBreakdownList from '../MoodBreakdownList/MoodBreakdownList';
 
-interface AnalyzingSongsProps {
+interface Props {
     songs: any;
     profile: any;
 }
 
-const AnalyzingSongs: React.FC<AnalyzingSongsProps> = ({
-    songs,
-    profile,
-}): JSX.Element => {
+const AnalyzingSongs: React.FC<Props> = ({ songs, profile }) => {
     const [currentSong, setCurrentSong] = useState<any>({});
     const [finishedAnalyzingSongs, setFinishedAnalyzingSongs] =
         useState<boolean>(false);
@@ -40,7 +37,7 @@ const AnalyzingSongs: React.FC<AnalyzingSongsProps> = ({
         return <SongDisplay song={song} />;
     }
 
-    return <MoodDisplay songs={songs} profile={profile} />;
+    return <MoodBreakdownList songs={songs} profile={profile} />;
 };
 
 export default AnalyzingSongs;
