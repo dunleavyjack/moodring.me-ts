@@ -2,7 +2,7 @@ import React from 'react';
 import howAreYouFeelingDesktop from '../../assets/pageAssets/home/howAreYouFeelingDesktop.png';
 import './HomePage.css';
 
-const HomePage: React.FC = (): JSX.Element => {
+const HomePage: React.FC = () => {
     const {
         REACT_APP_SPOTIFY_CLIENT_ID,
         REACT_APP_SPOTIFY_AUTHORIZE_URL,
@@ -15,6 +15,13 @@ const HomePage: React.FC = (): JSX.Element => {
     const handleDemoLogin = () => {
         window.location.href = 'demo';
     };
+
+    console.log(
+        REACT_APP_SPOTIFY_CLIENT_ID,
+        REACT_APP_SPOTIFY_AUTHORIZE_URL,
+        REACT_APP_SPOTIFY_REDIRECT_URL,
+        REACT_APP_SPOTIFY_SCOPES
+    );
 
     return (
         <main className="page-content">

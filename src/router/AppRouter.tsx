@@ -2,17 +2,17 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import '../styles/global.css';
-import Header from '../components/Header/Header';
+import Navbar from '../components/Navbar/Navbar';
 
 import HomePage from '../pages/HomePage/HomePage';
 import DashboardPage from '../pages/DashboardPage/DashboardPage';
 import DemoDashboardPage from '../pages/DemoDashboardPage/DemoDashboardPage';
 import AboutPage from '../pages/AboutPage/AboutPage';
 
-const AppRouter = (): JSX.Element => (
+const AppRouter: React.FC = () => (
     <BrowserRouter>
         <div className="page-container">
-            <Header />
+            <Navbar />
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/dashboard" element={<DashboardPage />} />

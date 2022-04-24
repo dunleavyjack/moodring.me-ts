@@ -5,7 +5,7 @@
     position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
-    top: 20px;
+    top: 15px;
     cursor: pointer;
     z-index: 999;
 }
@@ -21,9 +21,13 @@
     z-index: 999;
 }
 
+.about:hover,
+.about:active {
+    border-bottom: 1px solid #ffffff;
+}
+
 @media screen and (max-width: 600px) {
     .home {
-        top: 21px;
         font-size: 28px;
     }
 
@@ -32,9 +36,4 @@
         right: 10px;
         font-size: 15px;
     }
-}
-
-.about:hover,
-.about:active {
-    border-bottom: 1px solid #ffffff;
 }
