@@ -12,6 +12,10 @@
     object-position: center;
 }
 
+.left{
+    min-width: 235px;
+}
+
 .your-mood {
     margin: 0;
     padding: 0;
@@ -34,11 +38,30 @@
     width: 90vw;
     max-width: 1370px;
     border-radius: 200px 0px 200px 0px;
+    padding: 15px;
 }
 
 .full-breakdown {
     width: 175px;
     margin-top: 20px;
+}
+
+.mood-display-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.try-again-button{
+    font-family: "Unna";
+    background-color: black;
+    color: white;
+    line-height: 30px;
+    font-size: 18px;
+    width: 250px;
+    border-radius: 50px;
+    border: none;
+    margin: 20px;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {
@@ -47,5 +70,8 @@
     }
     .breakdown-container {
         border-radius: 200px 200px 0px 0px;
+    }
+    .mood-display-grid {
+        grid-template-columns: 1fr;
     }
 }
