@@ -8,9 +8,16 @@ const HomePage: React.FC = () => {
         REACT_APP_SPOTIFY_AUTHORIZE_URL,
         REACT_APP_SPOTIFY_REDIRECT_URL,
         REACT_APP_SPOTIFY_SCOPES,
-    } = process.env;
+    }: any = process.env;
 
-    const handleSpotifyLogin = () => {};
+    const encodedScopes: any = encodeURIComponent(REACT_APP_SPOTIFY_SCOPES);
+
+    const handleSpotifyLogin = () => {
+        console.log(
+            `${REACT_APP_SPOTIFY_AUTHORIZE_URL}?client_id=${REACT_APP_SPOTIFY_CLIENT_ID}&scope=${encodedScopes}&redirect_uri=${REACT_APP_SPOTIFY_REDIRECT_URL}&response_type=token&show_dialog=true`
+        );
+        window.location.href = `${REACT_APP_SPOTIFY_AUTHORIZE_URL}?client_id=${REACT_APP_SPOTIFY_CLIENT_ID}&scope=${encodedScopes}&redirect_uri=${REACT_APP_SPOTIFY_REDIRECT_URL}&response_type=token&show_dialog=true`;
+    };
 
     const handleDemoLogin = () => {
         window.location.href = 'demo';

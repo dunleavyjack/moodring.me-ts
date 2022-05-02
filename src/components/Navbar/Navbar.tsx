@@ -11,7 +11,7 @@ const handleAboutClick = () => {
 
 const Navbar: React.FC = () => {
     return (
-        <nav>
+        <nav className="header">
             <h1 className="home" onClick={handleHomeClick}>
                 Mood Ring
             </h1>

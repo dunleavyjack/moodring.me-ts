@@ -8,6 +8,7 @@ import HomePage from '../pages/HomePage/HomePage';
 import DashboardPage from '../pages/DashboardPage/DashboardPage';
 import DemoDashboardPage from '../pages/DemoDashboardPage/DemoDashboardPage';
 import AboutPage from '../pages/AboutPage/AboutPage';
+import SpotifyRedirect from '../pages/SpotifyRedirect/SpotifyRedirect';
 
 const AppRouter: React.FC = () => (
     <BrowserRouter>
@@ -18,6 +19,7 @@ const AppRouter: React.FC = () => (
                 <Route path="/dashboard" element={<DashboardPage />} />
                 <Route path="/demo" element={<DemoDashboardPage />} />
                 <Route path="/about" element={<AboutPage />} />
+                <Route path="/redirect" element={<SpotifyRedirect />} />
             </Routes>
         </div>
     </BrowserRouter>
