@@ -12,23 +12,13 @@ const HomePage: React.FC = () => {
 
     const encodedScopes: any = encodeURIComponent(REACT_APP_SPOTIFY_SCOPES);
 
-    const handleSpotifyLogin = () => {
-        console.log(
-            `${REACT_APP_SPOTIFY_AUTHORIZE_URL}?client_id=${REACT_APP_SPOTIFY_CLIENT_ID}&scope=${encodedScopes}&redirect_uri=${REACT_APP_SPOTIFY_REDIRECT_URL}&response_type=token&show_dialog=true`
-        );
+    const handleSpotifyLogin = (): void => {
         window.location.href = `${REACT_APP_SPOTIFY_AUTHORIZE_URL}?client_id=${REACT_APP_SPOTIFY_CLIENT_ID}&scope=${encodedScopes}&redirect_uri=${REACT_APP_SPOTIFY_REDIRECT_URL}&response_type=token&show_dialog=true`;
     };
 
-    const handleDemoLogin = () => {
+    const handleDemoLogin = (): void => {
         window.location.href = 'demo';
     };
-
-    console.log(
-        REACT_APP_SPOTIFY_CLIENT_ID,
-        REACT_APP_SPOTIFY_AUTHORIZE_URL,
-        REACT_APP_SPOTIFY_REDIRECT_URL,
-        REACT_APP_SPOTIFY_SCOPES
-    );
 
     return (
         <main className="page-content">

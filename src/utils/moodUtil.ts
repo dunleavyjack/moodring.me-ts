@@ -12,8 +12,12 @@ const maxValence: number = 1;
 
 // Mood Guesser
 export const calculateMood = (songs: any) => {
-    const danceability: number = getAverage(songs.map((song: any) => song.danceability));
-    const acousticness: number = getAverage(songs.map((song: any) => song.acousticness));
+    const danceability: number = getAverage(
+        songs.map((song: any) => song.danceability)
+    );
+    const acousticness: number = getAverage(
+        songs.map((song: any) => song.acousticness)
+    );
     const energy: number = getAverage(songs.map((song: any) => song.energy));
     const tempo: number = getAverage(songs.map((song: any) => song.tempo));
     const valence: number = getAverage(songs.map((song: any) => song.valence));
@@ -22,8 +26,10 @@ export const calculateMood = (songs: any) => {
     // Percent difference Object. Ex: {aboveAvg: true/false, value: x}
     const valenceDifference: string = getValenceDifference(valence);
     const energyDifference: string = getEnergyDifference(energy);
-    const danceabilityDifference: string = getDanceabilityDifference(danceability);
-    const acousticnessDifference: string = getAcousticnessDifference(acousticness);
+    const danceabilityDifference: string =
+        getDanceabilityDifference(danceability);
+    const acousticnessDifference: string =
+        getAcousticnessDifference(acousticness);
     const notatedKey: string | undefined = getNotatedKey(key);
 
     // Sort differences to find the highest
@@ -31,7 +37,10 @@ export const calculateMood = (songs: any) => {
         valenceDifference,
         energyDifference,
         danceabilityDifference,
-    ].sort((a: any, b: any) => parseFloat(b?.difference) - parseFloat(a?.difference));
+    ].sort(
+        (a: any, b: any) =>
+            parseFloat(b?.difference) - parseFloat(a?.difference)
+    );
 
     // Get two moods with highest percent difference
     const firstMood: any = differenceArray[0];
@@ -57,126 +66,126 @@ export const calculateMood = (songs: any) => {
 const matchMood = (moodNames: any): string => {
     // Matching: Higher + Lower (Valence)
     if (
-        moodNames.includes("more-happiness") &&
-        moodNames.includes("lower-danceability")
+        moodNames.includes('more-happiness') &&
+        moodNames.includes('lower-danceability')
     ) {
-        return "peaceful";
+        return 'peaceful';
     } else if (
-        moodNames.includes("more-happiness") &&
-        moodNames.includes("lower-energy")
+        moodNames.includes('more-happiness') &&
+        moodNames.includes('lower-energy')
     ) {
-        return "reflective";
+        return 'reflective';
 
-    // Matching: Higher + Lower (Danceability)
+        // Matching: Higher + Lower (Danceability)
     } else if (
-        moodNames.includes("higher-danceability") &&
-        moodNames.includes("less-happiness")
+        moodNames.includes('higher-danceability') &&
+        moodNames.includes('less-happiness')
     ) {
-        return "melancholic";
+        return 'melancholic';
     } else if (
-        moodNames.includes("higher-danceability") &&
-        moodNames.includes("lower-energy")
+        moodNames.includes('higher-danceability') &&
+        moodNames.includes('lower-energy')
     ) {
-        return "a bit tense";
+        return 'a bit tense';
 
         // Matching: Higher + Lower (Energy)
     } else if (
-        moodNames.includes("higher-energy") &&
-        moodNames.includes("less-happiness")
+        moodNames.includes('higher-energy') &&
+        moodNames.includes('less-happiness')
     ) {
-        return "a bit gloomy";
+        return 'a bit gloomy';
     } else if (
-        moodNames.includes("higher-energy") &&
-        moodNames.includes("lower-danceability")
+        moodNames.includes('higher-energy') &&
+        moodNames.includes('lower-danceability')
     ) {
-        return "nervous";
+        return 'nervous';
 
-    // Matching: Higher + Higher (All)
+        // Matching: Higher + Higher (All)
     } else if (
-        moodNames.includes("more-happiness") &&
-        moodNames.includes("higher-danceability")
+        moodNames.includes('more-happiness') &&
+        moodNames.includes('higher-danceability')
     ) {
-        return "expressive";
+        return 'expressive';
     } else if (
-        moodNames.includes("more-happiness") &&
-        moodNames.includes("higher-energy")
+        moodNames.includes('more-happiness') &&
+        moodNames.includes('higher-energy')
     ) {
-        return "elated";
+        return 'elated';
     } else if (
-        moodNames.includes("higher-danceability") &&
-        moodNames.includes("higher-energy")
+        moodNames.includes('higher-danceability') &&
+        moodNames.includes('higher-energy')
     ) {
-        return "electric";
+        return 'electric';
 
-    // Matching: Lower + Lower (All)
+        // Matching: Lower + Lower (All)
     } else if (
-        moodNames.includes("less-happiness") &&
-        moodNames.includes("lower-danceability")
+        moodNames.includes('less-happiness') &&
+        moodNames.includes('lower-danceability')
     ) {
-        return "a little blue";
+        return 'a little blue';
     } else if (
-        moodNames.includes("less-happiness") &&
-        moodNames.includes("lower-energy")
+        moodNames.includes('less-happiness') &&
+        moodNames.includes('lower-energy')
     ) {
-        return "a bit gloomy";
+        return 'a bit gloomy';
     } else if (
-        moodNames.includes("lower-danceability") &&
-        moodNames.includes("lower-energy")
+        moodNames.includes('lower-danceability') &&
+        moodNames.includes('lower-energy')
     ) {
-        return "sleepy";
+        return 'sleepy';
     }
-    return "confused"
+    return 'confused';
 };
 
 const getNotatedKey = (num: number): string => {
     switch (Math.round(num)) {
         case 0:
-            return "C";
+            return 'C';
         case 1:
-            return "C#";
+            return 'C#';
         case 2:
-            return "D";
+            return 'D';
         case 3:
-            return "D#";
+            return 'D#';
         case 4:
-            return "E";
+            return 'E';
         case 5:
-            return "F";
+            return 'F';
         case 6:
-            return "F#";
+            return 'F#';
         case 7:
-            return "G";
+            return 'G';
         case 8:
-            return "G#";
+            return 'G#';
         case 9:
-            return "A";
+            return 'A';
         case 10:
-            return "A#";
+            return 'A#';
         case 11:
-            return "B";
+            return 'B';
         default:
-            return "C";
+            return 'C';
     }
 };
 
 const getValenceDifference = (valenceScore: number): string => {
     const result: any = percentDifference(valenceScore, avgValence, maxValence);
-    result.name = "valence";
+    result.name = 'valence';
     if (result.aboveAvg === true) {
-        result.mood = "more-happiness";
+        result.mood = 'more-happiness';
     } else {
-        result.mood = "less-happiness";
+        result.mood = 'less-happiness';
     }
     return result;
 };
 
 const getEnergyDifference = (energyScore: number): string => {
     const result: any = percentDifference(energyScore, avgEnergy, maxEnergy);
-    result.name = "energy";
+    result.name = 'energy';
     if (result.aboveAvg === true) {
-        result.mood = "higher-energy";
+        result.mood = 'higher-energy';
     } else {
-        result.mood = "lower-energy";
+        result.mood = 'lower-energy';
     }
     return result;
 };
@@ -187,11 +196,11 @@ const getDanceabilityDifference = (danceabilityScore: number): string => {
         avgDanceability,
         maxDanceability
     );
-    result.name = "danceability";
+    result.name = 'danceability';
     if (result.aboveAvg === true) {
-        result.mood = "higher-danceability";
+        result.mood = 'higher-danceability';
     } else {
-        result.mood = "lower-danceability";
+        result.mood = 'lower-danceability';
     }
     return result;
 };
@@ -202,17 +211,21 @@ const getAcousticnessDifference = (acousticnessScore: number): string => {
         avgAcousticness,
         maxAcousticness
     );
-    result.name = "acousticness";
+    result.name = 'acousticness';
     if (result.aboveAvg === true) {
-        result.mood = "higher-acousticness";
+        result.mood = 'higher-acousticness';
     } else {
-        result.mood = "lower-acousticness";
+        result.mood = 'lower-acousticness';
     }
     return result;
 };
 
 // Percent Difference
-const percentDifference = (value: number, avgValue: number, maxValue: number) => {
+const percentDifference = (
+    value: number,
+    avgValue: number,
+    maxValue: number
+) => {
     if (value > avgValue) {
         const difference = ((value - avgValue) / (maxValue - avgValue)) * 100;
         return {
@@ -232,17 +245,17 @@ const percentDifference = (value: number, avgValue: number, maxValue: number) =>
 // Get the proper conjuction ('and'/'but') for the display page
 const getConjuction = (moodArr: any) => {
     if (
-        (moodArr[0].includes("less") || moodArr[0].includes("lower")) &&
-        (moodArr[1].includes("more") || moodArr[1].includes("higher"))
+        (moodArr[0].includes('less') || moodArr[0].includes('lower')) &&
+        (moodArr[1].includes('more') || moodArr[1].includes('higher'))
     ) {
-        return "but";
+        return 'but';
     } else if (
-        (moodArr[0].includes("more") || moodArr[0].includes("higher")) &&
-        (moodArr[1].includes("less") || moodArr[1].includes("lower"))
+        (moodArr[0].includes('more') || moodArr[0].includes('higher')) &&
+        (moodArr[1].includes('less') || moodArr[1].includes('lower'))
     ) {
-        return "but";
+        return 'but';
     } else {
-        return "and";
+        return 'and';
     }
 };
 

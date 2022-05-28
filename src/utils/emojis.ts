@@ -7,8 +7,8 @@ export interface EmojisInterface {
     readonly 'less energy': string;
     readonly 'more acousticness': string;
     readonly 'less acousticness': string;
-    readonly 'tempo': string;
-    readonly 'you': string
+    readonly tempo: string;
+    readonly you: string;
 }
 
 export const emojis: EmojisInterface = {
@@ -20,6 +20,6 @@ export const emojis: EmojisInterface = {
     'less energy': '😴',
     'more acousticness': '🍵',
     'less acousticness': '🎸',
-    'tempo': '', // blank (no emoji)
-    'you': '', // blank (no emoji)
+    tempo: '', // blank (no emoji)
+    you: '', // blank (no emoji)
 };

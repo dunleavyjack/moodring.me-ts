@@ -5,7 +5,7 @@ import MoodElement from '../MoodElement/MoodElement';
 import Synth from '../Synth/Synth';
 import './MoodBreakdownList.css';
 
-import { calculateMood } from '../../utils/moodDetector';
+import { calculateMood } from '../../utils/moodUtil';
 
 import profileImageLine from '../../assets/pageAssets/profileImageLine.png';
 import expressive from '../../assets/moods/expressive.png';
