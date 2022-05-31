@@ -4,10 +4,11 @@ import MoodBreakdownList from '../MoodBreakdownList/MoodBreakdownList';
 
 interface Props {
     songs: any;
-    profile: any;
+    user: any;
+    audioFeatures: any;
 }
 
-const AnalyzingSongs: React.FC<Props> = ({ songs, profile }) => {
+const AnalyzingSongs: React.FC<Props> = ({ songs, user, audioFeatures }) => {
     const [currentSong, setCurrentSong] = useState<any>({});
     const [finishedAnalyzingSongs, setFinishedAnalyzingSongs] =
         useState<boolean>(false);
@@ -37,7 +38,13 @@ const AnalyzingSongs: React.FC<Props> = ({ songs, profile }) => {
         return <SongDisplay song={song} />;
     }
 
-    return <MoodBreakdownList songs={songs} profile={profile} />;
+    return (
+        <MoodBreakdownList
+            songs={songs}
+            user={user}
+            audioFeatures={audioFeatures}
+        />
+    );
 };
 
 export default AnalyzingSongs;

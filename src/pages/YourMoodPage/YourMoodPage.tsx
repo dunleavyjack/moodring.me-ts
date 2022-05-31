@@ -6,7 +6,6 @@ import LoadingAnimation from '../../components/LoadingAnimation/LoadingAnimation
 const YourMood: React.FC = () => {
     const [finishedLoading, setFinishedLoading] = useState(false);
     const { user, songs, audioFeatures } = useFetchSpotify();
-    console.log(audioFeatures);
 
     useEffect(() => {
         setTimeout(() => {
@@ -18,7 +17,13 @@ const YourMood: React.FC = () => {
         return <LoadingAnimation />;
     }
 
-    return <AnalyzingSongs songs={songs} profile={user} />;
+    return (
+        <AnalyzingSongs
+            songs={songs}
+            user={user}
+            audioFeatures={audioFeatures}
+        />
+    );
 };
 
 export default YourMood;

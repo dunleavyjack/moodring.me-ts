@@ -13,15 +13,17 @@ import fullBreakdown from '../../assets/pageAssets/fullBreakdown.png';
 
 interface Props {
     songs: any;
-    profile: any;
+    user: any;
+    audioFeatures: any;
 }
 
-const MoodDisplay: React.FC<Props> = ({ songs, profile }) => {
+const MoodDisplay: React.FC<Props> = ({ songs, user, audioFeatures }) => {
     const [finishedColorShiftAnimation, setFinishedColorShiftAnimation] =
         useState<boolean>(false);
     const [mood, setMood] = useState<any>('');
 
     console.log(mood);
+    console.log(audioFeatures);
 
     useEffect(() => {
         setMood(calculateMood(songs));
@@ -38,7 +40,7 @@ const MoodDisplay: React.FC<Props> = ({ songs, profile }) => {
         <>
             <main className="page-content scrollable">
                 <section className="profile-display-container">
-                    <CircularProfilePic imageURL={profile.images[0].url} />
+                    <CircularProfilePic imageURL={user.images[0].url} />
                     <img
                         alt="Profile Decoration"
                         src={profileImageLine}
