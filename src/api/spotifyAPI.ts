@@ -1,29 +1,28 @@
 import axios from 'axios';
 import { setAuthHeader } from '../utils/spotifyUtil';
 import {
-    UserResponse,
-    SongsResponse,
-    AudioFeaturesResponse,
     User,
+    UserResponse,
     Song,
     Songs,
+    SongsResponse,
     AudioFeature,
     AudioFeatures,
+    AudioFeaturesResponse,
 } from '../types';
 
 export const getUserProfile = async (): Promise<User | {}> => {
     try {
         setAuthHeader();
-        const {
-            data: { display_name, images },
-        } = await axios.get<UserResponse>('https://api.spotify.com/v1/me/');
-        // const { display_name, images }: UserResponse = data;
+        const { data } = await axios.get<UserResponse>(
+            'https://api.spotify.com/v1/me/'
+        );
 
         const user: User = {
-            userName: display_name,
-            imageURL: images,
+            userName: data.display_name,
+            imageURL: data.images,
         };
-        console.log('THIS IS THE USER', user);
+
         return user;
     } catch (error) {
         console.error(error);
@@ -34,14 +33,11 @@ export const getUserProfile = async (): Promise<User | {}> => {
 export const getRecentSongs = async (): Promise<Songs | []> => {
     try {
         setAuthHeader();
-        const {
-            data: { items },
-        } = await axios.get<SongsResponse>(
+        const { data } = await axios.get<SongsResponse>(
             'https://api.spotify.com/v1/me/player/recently-played'
         );
-        // const { items }: SongsResponse = data;
 
-        const recentSongs: Songs = items.map((item) => {
+        const recentSongs: Songs = data.items.map((item) => {
             const recentSong: Song = {
                 name: item.track.name,
                 album: item.track.album.name,
@@ -52,6 +48,7 @@ export const getRecentSongs = async (): Promise<Songs | []> => {
             };
             return recentSong;
         });
+
         return recentSongs;
     } catch (error) {
         console.error(error);
@@ -65,13 +62,11 @@ export const getRecentAudioFeatures = async (
     const songIds: string[] = songs.map((song: any) => song.id);
     try {
         setAuthHeader();
-        const {
-            data: { audio_features },
-        } = await axios.get<AudioFeaturesResponse>(
+        const { data } = await axios.get<AudioFeaturesResponse>(
             `https://api.spotify.com/v1/audio-features/?ids=${songIds}`
         );
 
-        const audioFeaturesBySong = audio_features.map((features) => {
+        const audioFeaturesBySong = data.audio_features.map((features) => {
             const songAudioFeature: AudioFeature = {
                 danceability: features.danceability,
                 acousticness: features.acousticness,
