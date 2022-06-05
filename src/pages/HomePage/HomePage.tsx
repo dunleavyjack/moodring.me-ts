@@ -1,8 +1,13 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { setDemoStatus } from '../../actions';
+import { useNavigate } from 'react-router-dom';
 import howAreYouFeelingDesktop from '../../assets/pageAssets/home/howAreYouFeelingDesktop.png';
 import './HomePage.css';
 
 const HomePage: React.FC = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const {
         REACT_APP_SPOTIFY_CLIENT_ID,
         REACT_APP_SPOTIFY_AUTHORIZE_URL,
@@ -17,7 +22,8 @@ const HomePage: React.FC = () => {
     };
 
     const handleDemoLogin = (): void => {
-        window.location.href = 'demo';
+        dispatch(setDemoStatus(true));
+        navigate('/mood');
     };
 
     return (

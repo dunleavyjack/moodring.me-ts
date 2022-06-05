@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import SongDisplay from '../../components/SongDisplay/SongDisplay';
 import MoodBreakdownList from '../MoodBreakdownList/MoodBreakdownList';
+import { useAnalyzingSongs } from '../../hooks/useAnalyzingSongs';
 
 interface Props {
     songs: any;
@@ -9,33 +10,10 @@ interface Props {
 }
 
 const AnalyzingSongs: React.FC<Props> = ({ songs, user, audioFeatures }) => {
-    const [currentSong, setCurrentSong] = useState<any>({});
-    const [finishedAnalyzingSongs, setFinishedAnalyzingSongs] =
-        useState<boolean>(false);
+    const { currentSong, finishedAnalyzingSongs } = useAnalyzingSongs(songs);
 
-    useEffect(() => {
-        // Show user each album for 1.5 seconds
-        songs.forEach((song: any, index: number) => {
-            setTimeout(() => {
-                setCurrentSong(song);
-            }, index * 150);
-        });
-
-        // Finish showing albums after 31.5s
-        setTimeout(() => {
-            setFinishedAnalyzingSongs(true);
-        }, 3150);
-    }, [songs]);
-
-    // Return loading screen while waiting for Spotify API request
     if (!finishedAnalyzingSongs) {
-        const song = {
-            name: currentSong.name,
-            artist: currentSong.artist,
-            album: currentSong.album,
-            albumCoverURL: currentSong.imageURL,
-        };
-        return <SongDisplay song={song} />;
+        return <SongDisplay song={currentSong} />;
     }
 
     return (

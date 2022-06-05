@@ -1,17 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import AnalyzingSongs from '../../components/AnalyzingSongs/AnalyzingSongs';
 import { useFetchSpotify } from '../../hooks/useFetchSpotify';
+import { useLoadingTimer } from '../../hooks/useLoadingTimer';
 import LoadingAnimation from '../../components/LoadingAnimation/LoadingAnimation';
 
 const YourMood: React.FC = () => {
-    const [finishedLoading, setFinishedLoading] = useState(false);
     const { user, songs, audioFeatures } = useFetchSpotify();
-
-    useEffect(() => {
-        setTimeout(() => {
-            setFinishedLoading(true);
-        }, 3000);
-    });
+    const finishedLoading = useLoadingTimer();
 
     if (!finishedLoading) {
         return <LoadingAnimation />;

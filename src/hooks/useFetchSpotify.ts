@@ -5,12 +5,11 @@ import {
     getRecentSongs,
     getRecentAudioFeatures,
 } from '../api/spotifyAPI';
+import { User, Songs } from '../types';
 
 export const useFetchSpotify = () => {
-    const [user, setUser] = useState({});
-    const [songs, setSongs] = useState<
-        SpotifyApi.UsersRecentlyPlayedTracksResponse | []
-    >([]);
+    const [user, setUser] = useState<User | {}>();
+    const [songs, setSongs] = useState<Songs | []>([]);
     const [audioFeatures, setAudioFeatures] = useState<
         SpotifyApi.MultipleAudioFeaturesResponse | []
     >([]);
@@ -20,9 +19,9 @@ export const useFetchSpotify = () => {
     useEffect(() => {
         const fetchSongsAndUser = async () => {
             try {
-                const userProfile: any = await getUserProfile();
+                const userProfile: User | {} = await getUserProfile();
                 setUser(userProfile);
-                const recentSongs: any = await getRecentSongs();
+                const recentSongs: Songs | [] = await getRecentSongs();
                 setSongs(recentSongs);
                 const recentAudioFeatures: any = await getRecentAudioFeatures(
                     recentSongs
