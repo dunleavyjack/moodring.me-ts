@@ -9,28 +9,28 @@ export const setToken = (token: string) => {
 
 export const setDemoStatus = (status: boolean) => {
     return {
-        type: 'SET_DEMO_STATUS',
+        type: 'SET_DEMO',
         payload: status,
     };
 };
 
-export const setUser = (user: User) => {
+export const setUser = (user: User | {}) => {
     return {
         type: 'SET_USER',
         payload: user,
     };
 };
 
-export const setRecentSongs = (recentSongs: Songs) => {
+export const setRecentSongs = (recentSongs: Songs | []) => {
     return {
         type: 'SET_RECENT_SONGS',
         payload: recentSongs,
     };
 };
 
-export const setAudioFeatures = (audioFeatures: AudioFeatures) => {
+export const setAudioFeatures = (audioFeatures: AudioFeatures | []) => {
     return {
-        type: 'SET_RECENT_SONGS',
+        type: 'SET_AUDIO_FEATURES',
         payload: audioFeatures,
     };
 };
