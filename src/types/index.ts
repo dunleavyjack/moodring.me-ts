@@ -6,7 +6,7 @@ export interface AudioFeaturesResponse
 
 export interface User {
     userName: string | undefined;
-    imageURL: SpotifyApi.ImageObject[] | undefined;
+    imageURL: string;
 }
 
 export interface Song {
@@ -34,4 +34,14 @@ export interface SpotifyAccessToken {
     access_token: string;
     token_type: string;
     expires_in: string;
+}
+
+export interface Mood {
+    mood: string;
+    danceability: number;
+    acousticness: number;
+    energy: number;
+    tempo: number;
+    valence: number;
+    key: string;
 }
