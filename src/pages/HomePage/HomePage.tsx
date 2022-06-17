@@ -15,10 +15,10 @@ const HomePage: React.FC = () => {
         REACT_APP_SPOTIFY_SCOPES,
     }: any = process.env;
 
-    const encodedScopes: any = encodeURIComponent(REACT_APP_SPOTIFY_SCOPES);
-
     const handleSpotifyLogin = (): void => {
-        window.location.href = `${REACT_APP_SPOTIFY_AUTHORIZE_URL}?client_id=${REACT_APP_SPOTIFY_CLIENT_ID}&scope=${encodedScopes}&redirect_uri=${REACT_APP_SPOTIFY_REDIRECT_URL}&response_type=token&show_dialog=true`;
+        window.location.href = `${REACT_APP_SPOTIFY_AUTHORIZE_URL}?client_id=${REACT_APP_SPOTIFY_CLIENT_ID}&scope=${encodeURIComponent(
+            REACT_APP_SPOTIFY_SCOPES
+        )}&redirect_uri=${REACT_APP_SPOTIFY_REDIRECT_URL}&response_type=token&show_dialog=true`;
     };
 
     const handleDemoLogin = (): void => {
