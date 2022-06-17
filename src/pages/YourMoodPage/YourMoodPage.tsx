@@ -1,24 +1,18 @@
 import React from 'react';
-import AnalyzingSongs from '../../components/AnalyzingSongs/AnalyzingSongs';
 import { useFetchSpotify } from '../../hooks/useFetchSpotify';
 import { useLoadingTimer } from '../../hooks/useLoadingTimer';
+import AnalyzingSongsAnimation from '../../components/AnalyzingSongsAnimation/AnalyzingSongsAnimation';
 import LoadingAnimation from '../../components/LoadingAnimation/LoadingAnimation';
 
-const YourMood: React.FC = () => {
-    const { user, songs, audioFeatures } = useFetchSpotify();
+const YourMoodPage: React.FC = () => {
+    const spotifyRequestsComplete = useFetchSpotify();
     const finishedLoading = useLoadingTimer();
 
-    if (!finishedLoading) {
+    if (!spotifyRequestsComplete && !finishedLoading) {
         return <LoadingAnimation />;
     }
 
-    return (
-        <AnalyzingSongs
-            songs={songs}
-            user={user}
-            audioFeatures={audioFeatures}
-        />
-    );
+    return <AnalyzingSongsAnimation />;
 };
 
-export default YourMood;
+export default YourMoodPage;
