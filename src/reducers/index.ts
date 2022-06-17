@@ -7,7 +7,7 @@ interface SetToken {
 }
 
 interface SetIsDemo {
-    type: 'SET_DEMO_STATUS';
+    type: 'SET_DEMO';
     payload: boolean;
 }
 interface SetUser {
@@ -35,21 +35,14 @@ type Action =
     | SetAudioFeatures
     | SetMood;
 
-const setToken = (tokens = null, action: Action) => {
+const setSession = (session = { isDemo: false, token: '' }, action: Action) => {
     switch (action.type) {
+        case 'SET_DEMO':
+            return { ...session, isDemo: action.payload };
         case 'SET_TOKEN':
-            return action.payload;
+            return { ...session, token: action.payload };
         default:
-            return tokens;
-    }
-};
-
-const setIsDemo = (isDemo = false, action: Action) => {
-    switch (action.type) {
-        case 'SET_DEMO_STATUS':
-            return action.payload;
-        default:
-            return isDemo;
+            return session;
     }
 };
 
@@ -90,8 +83,7 @@ const setMood = (mood = null, action: Action) => {
 };
 
 export default combineReducers({
-    token: setToken,
-    isDemo: setIsDemo,
+    session: setSession,
     user: setUser,
     recentSongs: setRecentSongs,
     audioFeatures: setAudioFeatures,
