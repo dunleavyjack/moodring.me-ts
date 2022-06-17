@@ -16,7 +16,7 @@ export const getSpotifyAccessToken = (
 };
 
 export const setAuthHeader = () => {
-    const accessToken = store.getState().token;
+    const accessToken: string = store.getState().session.token;
     try {
         axios.defaults.headers.common[
             'Authorization'
