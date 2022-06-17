@@ -1,22 +1,17 @@
 import React from 'react';
 import { limitStringLength } from '../../utils/functions';
+import { Song } from '../../types';
 import analyzingMusicText from '../../assets/pageAssets/dashboard/analyzingMusicText.png';
 import backgroundRing from '../../assets/pageAssets/dashboard/albumCoverBackgroundRing.png';
 import './SongDisplay.css';
 
 interface Props {
-    song: {
-        name: string;
-        artist: string;
-        album: string;
-        albumCoverURL: string;
-    };
+    song: Song;
 }
 
 const SongDisplay: React.FC<Props> = ({
-    song: { name, artist, album, albumCoverURL },
+    song: { name, album, artist, imageURL },
 }) => {
-    console.log('this is the sooooon', name);
     return (
         <main className="page-content">
             <img
@@ -27,7 +22,7 @@ const SongDisplay: React.FC<Props> = ({
             <section className="album-cover-container">
                 <img
                     alt="AlbumName cover"
-                    src={albumCoverURL}
+                    src={imageURL}
                     className="album-cover"
                 />
                 <img
