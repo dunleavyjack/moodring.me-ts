@@ -1,66 +1,123 @@
-// Average Mood Levels
-const avgDanceability: number = 0.5;
-const avgAcousticness: number = 0.5;
-const avgEnergy: number = 0.5;
-const avgValence: number = 0.5;
+import { AudioFeature, AudioFeatures, MoodAverage } from '../types';
 
-// Max Mood Levels
-const maxDanceability: number = 1;
-const maxAcousticness: number = 1;
-const maxEnergy: number = 1;
-const maxValence: number = 1;
+// const avgDanceability: number = 0.5;
+// const avgAcousticness: number = 0.5;
+// const avgEnergy: number = 0.5;
+// const avgValence: number = 0.5;
 
-// Mood Guesser
-export const calculateMood = (songs: any) => {
-    const danceability: number = getAverage(
-        songs.map((song: any) => song.danceability)
+// const maxDanceability: number = 1;
+// const maxAcousticness: number = 1;
+// const maxEnergy: number = 1;
+// const maxValence: number = 1;
+
+// export const calculateMood = (recentSongAudioFeatures: AudioFeatures) => {
+//     const danceability: number = getAverage(
+//         recentSongAudioFeatures.map(
+//             (eachSong: AudioFeature) => eachSong.danceability
+//         )
+//     );
+//     const acousticness: number = getAverage(
+//         recentSongAudioFeatures.map(
+//             (eachSong: AudioFeature) => eachSong.acousticness
+//         )
+//     );
+//     const energy: number = getAverage(
+//         recentSongAudioFeatures.map((eachSong: AudioFeature) => eachSong.energy)
+//     );
+//     const tempo: number = getAverage(
+//         recentSongAudioFeatures.map((eachSong: AudioFeature) => eachSong.tempo)
+//     );
+//     const valence: number = getAverage(
+//         recentSongAudioFeatures.map(
+//             (eachSong: AudioFeature) => eachSong.valence
+//         )
+//     );
+//     const key: number = getAverage(
+//         recentSongAudioFeatures.map((eachSong: AudioFeature) => eachSong.key)
+//     );
+
+//     // Get the averages
+//     const danceabilityDifference: string =
+//         getDanceabilityDifference(danceability);
+//     const acousticnessDifference: string =
+//         getAcousticnessDifference(acousticness);
+//     const energyDifference: string = getEnergyDifference(energy);
+//     const valenceDifference: string = getValenceDifference(valence);
+//     const notatedKey: string | undefined = getNotatedKey(key);
+
+//     const differenceArray: string[] = [
+//         valenceDifference,
+//         energyDifference,
+//         danceabilityDifference,
+//     ].sort(
+//         (a: any, b: any) =>
+//             parseFloat(b?.difference) - parseFloat(a?.difference)
+//     );
+
+//     // Get two moods with highest percent difference
+//     const firstMood: any = differenceArray[0];
+//     const secondMood: any = differenceArray[1];
+//     const thirdMood: string = differenceArray[2];
+//     const topMoodsOnly: string[] = [firstMood.mood, secondMood.mood];
+//     const result: string = matchMood(topMoodsOnly);
+//     const conjuction: string = getConjuction(topMoodsOnly);
+
+//     const resultArray: any = {
+//         name: result,
+//         conjuction,
+//         firstMood,
+//         secondMood,
+//         thirdMood,
+//         acousticnessDifference,
+//         key: notatedKey,
+//         tempo: tempo.toFixed(2),
+//     };
+//     console.log(resultArray);
+//     return resultArray;
+// };
+
+// const percentDifference = (
+//     value: number,
+//     avgValue: number,
+//     maxValue: number
+// ) => {
+//     if (value > avgValue) {
+//         const difference = ((value - avgValue) / (maxValue - avgValue)) * 100;
+//         return {
+//             difference,
+//             aboveAvg: true,
+//         };
+//     }
+//     if (value < avgValue) {
+//         const difference = ((avgValue - value) / (maxValue - avgValue)) * 100;
+//         return {
+//             difference,
+//             aboveAvg: false,
+//         };
+//     }
+// };
+
+const getPercentDifference = (num: number) => {
+    const avgValue = 0.5;
+    const difference: number = Math.abs((num - avgValue)
+};
+
+
+export const calculateMood = (audioFeatures: AudioFeatures) => {
+    const songFeatures: any = [ 'danceability', 'acousticness', 'energy', 'valence', 'tempo', 'key' ];
+
+    let moodAverages: any = {};
+    songFeatures.forEach(( feature: | 'danceability' | 'acousticness' | 'energy' | 'valence'| 'tempo' | 'key') => {
+            const averageValue: number = audioFeatures.reduce((total, next) => total + next[feature], 0) / audioFeatures.length;
+            const averagePercentDifference: number = getPercentDifference(averageValue) 
+            
+            
+            
+            moodAverages[`${mood}Average`] = {averageValue, percentDifference, };
+        }
     );
-    const acousticness: number = getAverage(
-        songs.map((song: any) => song.acousticness)
-    );
-    const energy: number = getAverage(songs.map((song: any) => song.energy));
-    const tempo: number = getAverage(songs.map((song: any) => song.tempo));
-    const valence: number = getAverage(songs.map((song: any) => song.valence));
-    const key: number = getAverage(songs.map((song: any) => song.key));
 
-    // Percent difference Object. Ex: {aboveAvg: true/false, value: x}
-    const valenceDifference: string = getValenceDifference(valence);
-    const energyDifference: string = getEnergyDifference(energy);
-    const danceabilityDifference: string =
-        getDanceabilityDifference(danceability);
-    const acousticnessDifference: string =
-        getAcousticnessDifference(acousticness);
-    const notatedKey: string | undefined = getNotatedKey(key);
 
-    // Sort differences to find the highest
-    const differenceArray: string[] = [
-        valenceDifference,
-        energyDifference,
-        danceabilityDifference,
-    ].sort(
-        (a: any, b: any) =>
-            parseFloat(b?.difference) - parseFloat(a?.difference)
-    );
-
-    // Get two moods with highest percent difference
-    const firstMood: any = differenceArray[0];
-    const secondMood: any = differenceArray[1];
-    const thirdMood: string = differenceArray[2];
-    const topMoodsOnly: string[] = [firstMood.mood, secondMood.mood];
-    const result: string = matchMood(topMoodsOnly);
-    const conjuction: string = getConjuction(topMoodsOnly);
-
-    const resultArray: any = {
-        name: result,
-        conjuction,
-        firstMood,
-        secondMood,
-        thirdMood,
-        acousticnessDifference,
-        key: notatedKey,
-        tempo: tempo.toFixed(2),
-    };
-    return resultArray;
 };
 
 const matchMood = (moodNames: any): string => {

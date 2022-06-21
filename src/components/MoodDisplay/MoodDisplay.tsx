@@ -27,11 +27,11 @@ const MoodDisplay: React.FC = () => {
     console.log(audioFeatures);
 
     useEffect(() => {
-        setMood(calculateMood(recentSongs));
+        setMood(calculateMood(audioFeatures));
         setTimeout(() => {
             setFinishedColorShiftAnimation(true);
         }, 3000);
-    }, [recentSongs]);
+    }, [audioFeatures]);
 
     if (!finishedColorShiftAnimation) {
         return <LoadingAnimation />;

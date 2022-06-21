@@ -11,16 +11,16 @@ import { User, Songs, AudioFeatures } from '../types';
 import { store } from '../store';
 import {
     demoUser,
-    demoSongs,
+    demoRecentSongs,
     demoAudioFeatures,
 } from '../assets/demo/demoSampleData';
 
 export const useFetchSpotify = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { isDemo } = store.getState().session;
     const [spotifyRequestsComplete, setSpotifyRequestsComplete] =
         useState<boolean>(false);
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     useEffect(() => {
         const fetchSongsAndUser = async () => {
@@ -49,7 +49,7 @@ export const useFetchSpotify = () => {
 
         const setSampleSongsAndUser = () => {
             dispatch(setUser(demoUser));
-            dispatch(setRecentSongs(demoSongs));
+            dispatch(setRecentSongs(demoRecentSongs));
             dispatch(setAudioFeatures(demoAudioFeatures));
             setSpotifyRequestsComplete(true);
         };

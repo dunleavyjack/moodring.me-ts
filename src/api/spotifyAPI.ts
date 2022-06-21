@@ -69,8 +69,8 @@ export const getRecentAudioFeatures = async (
                 danceability: features.danceability,
                 acousticness: features.acousticness,
                 energy: features.energy,
-                tempo: features.tempo,
                 valence: features.valence,
+                tempo: features.tempo,
                 key: features.key,
             };
             return songAudioFeature;

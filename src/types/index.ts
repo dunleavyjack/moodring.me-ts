@@ -23,8 +23,8 @@ export interface AudioFeature {
     danceability: number;
     acousticness: number;
     energy: number;
-    tempo: number;
     valence: number;
+    tempo: number;
     key: number;
 }
 
@@ -44,4 +44,13 @@ export interface Mood {
     tempo: number;
     valence: number;
     key: string;
+}
+
+export interface MoodAverage {
+    danceabilityAverage: number;
+    acousticnessAverage: number;
+    energyAverage: number;
+    valenceAverage: number;
+    tempoAverage: number;
+    keyAverage: number;
 }
