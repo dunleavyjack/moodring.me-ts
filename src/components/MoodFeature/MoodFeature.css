@@ -1,4 +1,4 @@
-.mood-element-container {
+.mood-feature-container {
     font-family: Unna;
     display: flex;
     flex-wrap: wrap;
@@ -8,13 +8,13 @@
     height: 100px;
 }
 
-.mood-element-emoji {
+.mood-feature-emoji {
     font-size: 50px;
     padding-right: 10px;
     margin: 0;
 }
 
-.mood-element-percent {
+.mood-feature-percent {
     font-family: 'Abril Fatface', cursive;
     text-align: right;
     font-size: 50px;
@@ -24,7 +24,7 @@
     margin-right: 20px;
 }
 
-.mood-element-name {
+.mood-feature-name {
     font-weight: 700px;
     margin: 0;
     font-size: 22px;
@@ -36,17 +36,17 @@
 }
 
 @media screen and (max-width: 975px) {
-    .mood-element-container {
+    .mood-feature-container {
         align-items: flex-end;
     }
-    .mood-element-name {
+    .mood-feature-name {
         width: 100%;
         align-self: center;
         margin-bottom: 0px;
         text-align: center;
         line-height: 22px;
     }
-    .mood-element-percent{
+    .mood-feature-percent{
         text-align: center;
     }
 }

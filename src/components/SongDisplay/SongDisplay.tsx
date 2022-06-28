@@ -1,16 +1,16 @@
 import React from 'react';
 import { limitStringLength } from '../../utils/functions';
-import { Song } from '../../types';
+import { Songs } from '../../types';
 import analyzingMusicText from '../../assets/pageAssets/dashboard/analyzingMusicText.png';
 import backgroundRing from '../../assets/pageAssets/dashboard/albumCoverBackgroundRing.png';
 import './SongDisplay.css';
 
 interface Props {
-    song: Song;
+    song: Songs;
 }
 
 const SongDisplay: React.FC<Props> = ({
-    song: { name, album, artist, imageURL },
+    song: { name = '', album = '', artist = '', imageURL = '' },
 }) => {
     return (
         <main className="page-content">

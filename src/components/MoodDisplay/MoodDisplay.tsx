@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CircularProfilePic from '../CircularProfilePic/CircularProfilePic';
 import LoadingAnimation from '../LoadingAnimation/LoadingAnimation';
-import MoodElement from '../MoodElement/MoodElement';
+import MoodFeature from '../MoodFeature/MoodFeature';
 import Synth from '../Synth/Synth';
 import './MoodDisplay.css';
 import { calculateMood } from '../../utils/moodUtil';
@@ -9,25 +9,31 @@ import profileImageLine from '../../assets/pageAssets/profileImageLine.png';
 import expressive from '../../assets/moods/expressive.png';
 import fullBreakdown from '../../assets/pageAssets/fullBreakdown.png';
 import { store } from '../../store';
-import { AudioFeatures, User, Songs } from '../../types';
+import {
+    AudioFeatures,
+    User,
+    Songs,
+    Mood,
+    EmotionalFeatures,
+    StandardFeatures,
+} from '../../types';
+import { EmptyMood } from '../../constants';
 
 interface ReduxState {
     user: User;
-    recentSongs: Songs;
-    audioFeatures: AudioFeatures;
+    recentSongs: Songs[];
+    audioFeatures: AudioFeatures[];
 }
 
 const MoodDisplay: React.FC = () => {
-    const { user, recentSongs, audioFeatures }: ReduxState = store.getState();
+    const { user, audioFeatures }: ReduxState = store.getState();
     const [finishedColorShiftAnimation, setFinishedColorShiftAnimation] =
         useState<boolean>(false);
-    const [mood, setMood] = useState<any>('');
-
-    console.log(mood);
-    console.log(audioFeatures);
+    const [mood, setMood] = useState<Mood>(EmptyMood);
 
     useEffect(() => {
-        setMood(calculateMood(audioFeatures));
+        const mood: Mood = calculateMood(audioFeatures);
+        setMood(mood);
         setTimeout(() => {
             setFinishedColorShiftAnimation(true);
         }, 3000);
@@ -37,11 +43,39 @@ const MoodDisplay: React.FC = () => {
         return <LoadingAnimation />;
     }
 
+    const emotionalFeaturesList = (): JSX.Element[] => {
+        return mood.emotionalFeatures.map(
+            (emotionalFeature: EmotionalFeatures, index: number) => {
+                return (
+                    <MoodFeature
+                        feature={emotionalFeature.percentDifferenceString}
+                        percent={`${emotionalFeature.percentDifference.toFixed(
+                            2
+                        )}%`}
+                        key={index}
+                    />
+                );
+            }
+        );
+    };
+
+    const averageTempo: string =
+        mood.standardFeatures
+            .find(
+                (feature: StandardFeatures) => feature.featureName === 'tempo'
+            )
+            ?.averageValue.toFixed(0) || '0';
+
+    const averageNotatedKey: string =
+        mood.standardFeatures.find(
+            (feature: StandardFeatures) => feature.featureName === 'key'
+        )?.averageNotatedKey || 'A#';
+
     return (
         <>
             <main className="page-content scrollable">
                 <section className="profile-display-container">
-                    <CircularProfilePic imageURL={user.imageURL[0]} />
+                    <CircularProfilePic imageURL={user.imageURL} />
                     <img
                         alt="Profile Decoration"
                         src={profileImageLine}
@@ -58,11 +92,12 @@ const MoodDisplay: React.FC = () => {
                 <section>
                     <h2 className="mood-description">
                         Your recent songs have{' '}
-                        {mood.firstMood.difference.toFixed(2)}%{' '}
-                        {mood.firstMood.mood.replace('-', ' ')}{' '}
-                        {mood.conjuction}{' '}
-                        {mood.secondMood.difference.toFixed(2)}%{' '}
-                        {mood.secondMood.mood.replace('-', ' ')} than average.
+                        {mood.emotionalFeatures[0].percentDifference.toFixed(2)}
+                        % {mood?.emotionalFeatures[0].percentDifferenceString}{' '}
+                        {'and'}{' '}
+                        {mood.emotionalFeatures[1].percentDifference.toFixed(2)}
+                        % {mood.emotionalFeatures[1].percentDifferenceString}{' '}
+                        than average.
                     </h2>
                 </section>
                 <section className="breakdown-container">
@@ -72,28 +107,14 @@ const MoodDisplay: React.FC = () => {
                         className="full-breakdown"
                     />
                     <div className="mood-display-grid">
-                        <div className="left">
-                            <MoodElement
-                                element={'More Happiness'}
-                                percent={'50.2'}
-                            />
-                            <MoodElement
-                                element={'More Danceability'}
-                                percent={'12.8'}
-                            />
-                            <MoodElement
-                                element={'More Energy'}
-                                percent={'34.7'}
-                            />
-                            <MoodElement
-                                element={'More Acousticness'}
-                                percent={'11.4'}
-                            />
-                        </div>
+                        <div className="left">{emotionalFeaturesList()}</div>
                         <div className="right">
-                            <Synth note="A4" />
-                            <MoodElement element={'Tempo'} percent={'51'} />
-                            <MoodElement element={'You 😇'} percent={'100'} />
+                            <Synth note={averageNotatedKey} />
+                            <MoodFeature
+                                feature={'bpm'}
+                                percent={averageTempo}
+                            />
+                            <MoodFeature feature="You 😇" percent="100%" />
                         </div>
                     </div>
                 </section>

@@ -21,14 +21,14 @@ export const setUser = (user: User | {}) => {
     };
 };
 
-export const setRecentSongs = (recentSongs: Songs | []) => {
+export const setRecentSongs = (recentSongs: Songs[] | []) => {
     return {
         type: 'SET_RECENT_SONGS',
         payload: recentSongs,
     };
 };
 
-export const setAudioFeatures = (audioFeatures: AudioFeatures | []) => {
+export const setAudioFeatures = (audioFeatures: AudioFeatures[] | []) => {
     return {
         type: 'SET_AUDIO_FEATURES',
         payload: audioFeatures,

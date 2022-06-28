@@ -3,11 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {
     getUserProfile,
-    getRecentSongs,
-    getRecentAudioFeatures,
+    getRecentSongsAndAudioFeatures,
 } from '../api/spotifyAPI';
 import { setRecentSongs, setUser, setAudioFeatures } from '../actions';
-import { User, Songs, AudioFeatures } from '../types';
+import { User, SongsAndAudioFeatures } from '../types';
 import { store } from '../store';
 import {
     demoUser,
@@ -23,24 +22,16 @@ export const useFetchSpotify = () => {
         useState<boolean>(false);
 
     useEffect(() => {
-        const fetchSongsAndUser = async () => {
+        const fetchUserAndSongs = async () => {
             try {
-                const userProfile: User | void = await getUserProfile();
-                if (userProfile) {
-                    dispatch(setUser(userProfile));
-                }
-                const recentSongs: Songs | void = await getRecentSongs();
-                if (recentSongs) {
-                    dispatch(setRecentSongs(recentSongs));
+                const userProfile: User = await getUserProfile();
+                dispatch(setUser(userProfile));
 
-                    // Song ids from recent songs are needed to request recent song audio features
-                    const recentAudioFeatures: AudioFeatures | void =
-                        await getRecentAudioFeatures(recentSongs);
-                    if (recentAudioFeatures) {
-                        dispatch(setAudioFeatures(recentAudioFeatures));
-                    }
-                    setSpotifyRequestsComplete(true);
-                }
+                const { songs, audioFeatures }: SongsAndAudioFeatures =
+                    await getRecentSongsAndAudioFeatures();
+                dispatch(setRecentSongs(songs));
+                dispatch(setAudioFeatures(audioFeatures));
+                setSpotifyRequestsComplete(true);
             } catch (error) {
                 console.error(error);
                 navigate('/error');
@@ -54,7 +45,7 @@ export const useFetchSpotify = () => {
             setSpotifyRequestsComplete(true);
         };
 
-        isDemo ? setSampleSongsAndUser() : fetchSongsAndUser();
+        isDemo ? setSampleSongsAndUser() : fetchUserAndSongs();
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return spotifyRequestsComplete;

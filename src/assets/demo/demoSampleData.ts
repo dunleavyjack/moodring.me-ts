@@ -6,7 +6,7 @@ export const demoUser: User = {
     imageURL: demoProfilePic,
 };
 
-export const demoRecentSongs: Songs = [
+export const demoRecentSongs: Songs[] = [
     {
         name: 'Cameras',
         album: 'Women',
@@ -189,7 +189,7 @@ export const demoRecentSongs: Songs = [
     },
 ];
 
-export const demoAudioFeatures: AudioFeatures = [
+export const demoAudioFeatures: AudioFeatures[] = [
     {
         danceability: 0.349,
         acousticness: 0.017,

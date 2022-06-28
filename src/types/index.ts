@@ -1,15 +1,15 @@
-export interface UserResponse extends SpotifyApi.UserProfileResponse {}
-export interface SongsResponse
-    extends SpotifyApi.UsersRecentlyPlayedTracksResponse {}
-export interface AudioFeaturesResponse
-    extends SpotifyApi.MultipleAudioFeaturesResponse {}
+export interface SpotifyAccessToken {
+    access_token: string;
+    token_type: string;
+    expires_in: string;
+}
 
 export interface User {
     userName: string | undefined;
     imageURL: string;
 }
 
-export interface Song {
+export interface Songs {
     name: string;
     album: string;
     artist: string;
@@ -17,9 +17,8 @@ export interface Song {
     playedAt: string;
     id: string;
 }
-export interface Songs extends Array<Song> {}
 
-export interface AudioFeature {
+export interface AudioFeatures {
     danceability: number;
     acousticness: number;
     energy: number;
@@ -28,29 +27,26 @@ export interface AudioFeature {
     key: number;
 }
 
-export interface AudioFeatures extends Array<AudioFeature> {}
+export interface SongsAndAudioFeatures {
+    songs: Songs[];
+    audioFeatures: AudioFeatures[];
+}
 
-export interface SpotifyAccessToken {
-    access_token: string;
-    token_type: string;
-    expires_in: string;
+export interface EmotionalFeatures {
+    featureName: string;
+    averageValue: number;
+    percentDifference: number;
+    percentDifferenceString: string;
+}
+
+export interface StandardFeatures {
+    featureName: string;
+    averageValue: number;
+    averageNotatedKey?: string;
 }
 
 export interface Mood {
     mood: string;
-    danceability: number;
-    acousticness: number;
-    energy: number;
-    tempo: number;
-    valence: number;
-    key: string;
-}
-
-export interface MoodAverage {
-    danceabilityAverage: number;
-    acousticnessAverage: number;
-    energyAverage: number;
-    valenceAverage: number;
-    tempoAverage: number;
-    keyAverage: number;
+    emotionalFeatures: EmotionalFeatures[];
+    standardFeatures: StandardFeatures[];
 }

@@ -73,19 +73,9 @@ const setAudioFeatures = (audioFeatures = [], action: Action) => {
     }
 };
 
-const setMood = (mood = null, action: Action) => {
-    switch (action.type) {
-        case 'SET_MOOD':
-            return action.payload;
-        default:
-            return mood;
-    }
-};
-
 export default combineReducers({
     session: setSession,
     user: setUser,
     recentSongs: setRecentSongs,
     audioFeatures: setAudioFeatures,
-    mood: setMood,
 });
