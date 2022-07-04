@@ -1,31 +1,29 @@
 import axios from 'axios';
 import { User, SongsAndAudioFeatures } from '../types';
-import { EmptyUser, EmptySongsAndAudioFeatures } from '../constants';
 import { store } from '../store';
+const { REACT_APP_NEST_BASE_URL: baseURL } = process.env;
 
 export const getUserProfile = async (): Promise<User> => {
-    const accessToken: string = store.getState().session.token;
+    const spotifyToken: string = store.getState().session.token;
     try {
-        const { data } = await axios.get(
-            `http://localhost:3001/users/${accessToken}`
-        );
+        const { data } = await axios.get(`${baseURL}/users/${spotifyToken}`);
         return data;
     } catch (error) {
-        console.error(error);
-        return EmptyUser;
+        console.error('Nest Server Error', error);
+        return {} as User;
     }
 };
 
 export const getRecentSongsAndAudioFeatures =
     async (): Promise<SongsAndAudioFeatures> => {
-        const accessToken: string = store.getState().session.token;
+        const spotifyToken: string = store.getState().session.token;
         try {
             const { data } = await axios.get(
-                `http://localhost:3001/songs/${accessToken}`
+                `${baseURL}/songs/${spotifyToken}`
             );
             return data;
         } catch (error) {
-            console.error(error);
-            return EmptySongsAndAudioFeatures;
+            console.error('Nest Server Error', error);
+            return { songs: [], audioFeatures: [] } as SongsAndAudioFeatures;
         }
     };
