@@ -17,7 +17,7 @@ const RedirectPage: React.FC = () => {
             }
             const { access_token } = getSpotifyAccessToken(currentLocation);
             dispatch(setToken(access_token));
-            navigate('/mood');
+            navigate('/analyzing');
         } catch (error) {
             console.error(error);
             navigate('/');
