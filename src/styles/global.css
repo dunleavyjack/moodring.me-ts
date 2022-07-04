@@ -1,9 +1,9 @@
 body {
-    background-color: #becbfa;
+    background-color: #B0BFF7;
     color: white;
     padding: 0;
     margin: 0;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .page-container {
@@ -12,31 +12,29 @@ body {
     padding: 0;
     width: 100vw;
     height: 100vh;
-    background: url('../assets/pageAssets/topCornerVectorYellow.png'),
-        url('../assets/pageAssets/bottomRightVector.png');
-    background-position: top left, bottom right;
+    background: url('../assets/pageAssets/mr-desktop-background.svg');
+    background-position: center, center;
     background-repeat: no-repeat;
-    background-size: 50vw, 60vw;
+    background-size: cover;
 }
 
-.page-container {
+.page-container-mobile{
     position: relative;
     margin: 0;
     padding: 0;
     width: 100vw;
     height: 100vh;
-    background: url('../assets/pageAssets/topCornerVectorYellow.png'),
-        url('../assets/pageAssets/bottomRightVector.png');
-    background-position: top left, bottom right;
+    background: url('../assets/pageAssets/mr-mobile-background.svg');
+    background-position: center, center;
     background-repeat: no-repeat;
-    background-size: 50vw, 60vw;
+    background-size: cover;
 }
 
-@media screen and (max-width: 700px) {
+/* @media screen and (max-width: 700px) {
     .page-container {
         background-size: 90vw, 120vw;
     }
-}
+} */
 
 .page-content {
     display: flex;
