@@ -29,9 +29,16 @@ export const useFetchSpotify = () => {
 
                 const { songs, audioFeatures }: SongsAndAudioFeatures =
                     await getRecentSongsAndAudioFeatures();
-                dispatch(setRecentSongs(songs));
-                dispatch(setAudioFeatures(audioFeatures));
-                setSpotifyRequestsComplete(true);
+                if (songs.length && audioFeatures.length) {
+                    dispatch(setRecentSongs(songs));
+                    dispatch(setAudioFeatures(audioFeatures));
+                    setSpotifyRequestsComplete(true);
+                } else {
+                    console.error(
+                        'Nest connection error. Empty response object.'
+                    );
+                    navigate('/error');
+                }
             } catch (error) {
                 console.error(error);
                 navigate('/error');
