@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAnalyzingSongs } from '../../hooks/useAnalyzingSongs';
 import { store } from '../../store';
 import SongDisplay from '../SongDisplay/SongDisplay';
-import MoodDisplay from '../MoodDisplay/MoodDisplay';
+import { useNavigate } from 'react-router-dom';
 
 const AnalyzingSongsAnimation: React.FC = () => {
+    const navigate = useNavigate();
     const { recentSongs } = store.getState();
     const { currentSong, finishedAnalyzingSongs } =
         useAnalyzingSongs(recentSongs);
 
-    if (!finishedAnalyzingSongs) {
-        return <SongDisplay song={currentSong} />;
-    }
+    useEffect(() => {
+        if (finishedAnalyzingSongs) {
+            navigate('/mood');
+        }
+    }, [finishedAnalyzingSongs]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    return <MoodDisplay />;
+    return <SongDisplay song={currentSong} />;
 };
 
 export default AnalyzingSongsAnimation;
