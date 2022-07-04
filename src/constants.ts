@@ -13,12 +13,12 @@ export const EmptyUser: User = {
 
 export const EmptySongs: Songs[] = [
     {
-        name: 'string',
-        album: 'string',
-        artist: 'string',
-        imageURL: 'string',
-        playedAt: 'string',
-        id: 'string',
+        name: '',
+        album: '',
+        artist: '',
+        imageURL: '',
+        playedAt: '',
+        id: '',
     },
 ];
 
