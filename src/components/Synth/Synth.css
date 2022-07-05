@@ -41,11 +41,15 @@
     margin-top: 10px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 660px) {
     .synth-container {
         text-align: center;
     }
     .synth {
         max-width: 100%;
+    }
+    .synth-button-container{
+        display: flex;
+        justify-content: center;
     }
 }

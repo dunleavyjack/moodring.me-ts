@@ -40,6 +40,7 @@ export const EmptySongsAndAudioFeatures: SongsAndAudioFeatures = {
 
 export const EmptyMood: Mood = {
     mood: '',
+    moodImageURL: '',
     emotionalFeatures: [
         {
             featureName: '',

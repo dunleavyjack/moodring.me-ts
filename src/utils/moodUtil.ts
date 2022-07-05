@@ -1,10 +1,12 @@
 import {
     emotionalFeatureNames,
+    isolatedEmotionalFeatureNames,
     standardFeatureNames,
     getAverageValue,
     getPercentDifference,
     getPercentDifferenceString,
     getMatchedMood,
+    getMoodImageURL,
     getAverageNotatedKey,
 } from './helpers';
 import {
@@ -37,9 +39,34 @@ export const calculateMood = (audioFeatures: AudioFeatures[]): Mood => {
         }
     );
 
+    const isolatedEmotionalFeatures: EmotionalFeatures[] =
+        isolatedEmotionalFeatureNames.map((featureName: string) => {
+            const averageValue: number = getAverageValue(
+                audioFeatures,
+                featureName
+            );
+            const percentDifference: number =
+                getPercentDifference(averageValue);
+
+            const percentDifferenceString: string = getPercentDifferenceString(
+                featureName,
+                percentDifference
+            );
+            return {
+                featureName,
+                averageValue,
+                percentDifference: Math.abs(percentDifference),
+                percentDifferenceString,
+            };
+        });
+
     const sortedEmotionalFeatures: EmotionalFeatures[] = emotionalFeatures.sort(
         (a: EmotionalFeatures, b: EmotionalFeatures) =>
             Math.abs(b.percentDifference) - Math.abs(a.percentDifference)
+    );
+
+    const allEmotionalFeatures = sortedEmotionalFeatures.concat(
+        isolatedEmotionalFeatures
     );
 
     const [firstEmotionalFeature, secondEmotionalFeature] =
@@ -49,6 +76,8 @@ export const calculateMood = (audioFeatures: AudioFeatures[]): Mood => {
         firstEmotionalFeature,
         secondEmotionalFeature
     );
+
+    const moodImageURL: string = getMoodImageURL(mood);
 
     const standardFeatures: StandardFeatures[] = standardFeatureNames.map(
         (featureName: string) => {
@@ -68,7 +97,8 @@ export const calculateMood = (audioFeatures: AudioFeatures[]): Mood => {
 
     const calculatedMood: Mood = {
         mood,
-        emotionalFeatures,
+        moodImageURL,
+        emotionalFeatures: allEmotionalFeatures,
         standardFeatures,
     };
 

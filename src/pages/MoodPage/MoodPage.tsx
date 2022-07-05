@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import CircularProfilePic from '../../components/CircularProfilePic/CircularProfilePic';
-// import LoadingAnimation from '../../components/LoadingAnimation/LoadingAnimation';
 import MoodFeature from '../../components/MoodFeature/MoodFeature';
 import Navbar from '../../components/Navbar/Navbar';
 import Synth from '../../components/Synth/Synth';
@@ -8,7 +7,6 @@ import './MoodPage.css';
 import { useNavigate } from 'react-router-dom';
 import { calculateMood } from '../../utils/moodUtil';
 import profileImageLine from '../../assets/pageAssets/profileImageLine.png';
-import expressive from '../../assets/moods/expressive.png';
 import fullBreakdown from '../../assets/pageAssets/fullBreakdown.png';
 import { store } from '../../store';
 import {
@@ -20,7 +18,6 @@ import {
     StandardFeatures,
 } from '../../types';
 import { EmptyMood } from '../../constants';
-import LoadingAnimation from '../../components/LoadingAnimation/LoadingAnimation';
 
 interface ReduxState {
     user: User;
@@ -71,7 +68,7 @@ const MoodPage: React.FC = () => {
     const averageNotatedKey: string =
         mood.standardFeatures.find(
             (feature: StandardFeatures) => feature.featureName === 'key'
-        )?.averageNotatedKey || 'A#';
+        )?.averageNotatedKey || 'A#4';
 
     if (mood.mood) {
         return (
@@ -89,7 +86,7 @@ const MoodPage: React.FC = () => {
                     <section className="mood-display-container">
                         <img
                             alt="Your Mood"
-                            src={expressive}
+                            src={mood.moodImageURL}
                             className="your-mood"
                         />
                     </section>
@@ -141,7 +138,7 @@ const MoodPage: React.FC = () => {
         );
     }
 
-    return <LoadingAnimation />;
+    return <></>;
 };
 
 export default MoodPage;

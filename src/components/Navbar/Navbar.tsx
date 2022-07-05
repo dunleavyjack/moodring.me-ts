@@ -16,19 +16,23 @@ const handleAboutClick = () => {
 
 const Navbar: React.FC<Props> = ({ isFullscreen = false }) => {
     const { pathname } = useLocation();
-    const isMoodPage = pathname === '/mood';
+    const isFullPage = pathname === '/mood' || pathname === '/about';
 
-    if (isMoodPage && !isFullscreen) {
+    if (isFullPage && !isFullscreen) {
         return <></>;
     }
 
     return (
-        <nav className={isMoodPage ? 'fullscreen-header' : 'header'}>
-            <h1 className={'home'} onClick={handleHomeClick}>
-                Mood Ring
+        <nav className={isFullPage ? 'fullscreen-header' : 'header'}>
+            <h1 className={'home'}>
+                <span className="pointer" onClick={handleHomeClick}>
+                    Mood Ring
+                </span>
             </h1>
-            <h2 className={'about'} onClick={handleAboutClick}>
-                About
+            <h2 className={'about'}>
+                <span className="pointer" onClick={handleAboutClick}>
+                    About
+                </span>
             </h2>
         </nav>
     );
