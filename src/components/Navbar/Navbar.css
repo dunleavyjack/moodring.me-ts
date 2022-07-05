@@ -1,31 +1,58 @@
+.header{
+    height: 70px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+}
+
+.fullscreen-header{
+    height: 70px;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+}
+
+
 .home {
     font-family: 'Abril Fatface', cursive;
     color: white;
     font-size: 32px;
-    position: absolute;
+    position: relative;
     left: 50%;
     transform: translate(-50%, -50%);
     top: 15px;
     cursor: pointer;
     z-index: 999;
+    width: 100%;
+    text-align: center;
 }
 
 .about {
     font-family: 'Unna', serif;
     color: white;
     font-size: 20px;
-    position: absolute;
-    right: 20px;
-    top: 15px;
+    position: relative;
+    text-align: right;
     cursor: pointer;
+    word-wrap: normal;
     z-index: 999;
+    white-space: nowrap;
+    width: auto;
+    margin-right: 20px;
+    padding-bottom: 7px;
 }
+
 
 .about:hover,
 .about:active {
     border-bottom: 1px solid #ffffff;
 }
-
+/* 
 @media screen and (max-width: 600px) {
     .home {
         font-size: 28px;
@@ -36,4 +63,4 @@
         right: 10px;
         font-size: 15px;
     }
-}
+} */

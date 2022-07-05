@@ -1,6 +1,10 @@
 .synth-container {
     text-align: left;
+    /* text-align: center; */
     height: 240px;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
 }
 
 .synth-container > h3 {
