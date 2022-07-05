@@ -1,11 +1,23 @@
 import { AudioFeatures, EmotionalFeatures } from '../types';
+import expressiveMoodImage from '../assets/moods/moodExpressive.svg';
+import blueMoodImage from '../assets/moods/moodBlue.svg';
+import elatedMoodImage from '../assets/moods/moodElated.svg';
+import electricMoodImage from '../assets/moods/moodElectric.svg';
+import gloomyMoodImage from '../assets/moods/moodGloomy.svg';
+import melancholicMoodImage from '../assets/moods/moodMelancholic.svg';
+import nervousMoodImage from '../assets/moods/moodNervous.svg';
+import peacefulMoodImage from '../assets/moods/moodPeaceful.svg';
+import reflectiveMoodImage from '../assets/moods/moodReflective.svg';
+import sleepyMoodImage from '../assets/moods/moodSleepy.svg';
+import tenseMoodImage from '../assets/moods/moodTense.svg';
 
 export const emotionalFeatureNames: string[] = [
     'danceability',
-    'acousticness',
     'energy',
     'valence',
 ];
+
+export const isolatedEmotionalFeatureNames: string[] = ['acousticness'];
 
 export const standardFeatureNames: string[] = ['tempo', 'key'];
 
@@ -129,33 +141,62 @@ export const getMatchedMood = (
     return 'confused';
 };
 
+export const getMoodImageURL = (mood: string) => {
+    switch (mood) {
+        case 'peaceful':
+            return peacefulMoodImage;
+        case 'reflective':
+            return reflectiveMoodImage;
+        case 'melancholic':
+            return melancholicMoodImage;
+        case 'a bit tense':
+            return tenseMoodImage;
+        case 'a bit gloomy':
+            return gloomyMoodImage;
+        case 'nervous':
+            return nervousMoodImage;
+        case 'expressive':
+            return expressiveMoodImage;
+        case 'elated':
+            return elatedMoodImage;
+        case 'electric':
+            return electricMoodImage;
+        case 'a little blue':
+            return blueMoodImage;
+        case 'sleepy':
+            return sleepyMoodImage;
+        default:
+            return expressiveMoodImage;
+    }
+};
+
 export const getAverageNotatedKey = (averageValue: number): string => {
     switch (Math.round(averageValue)) {
         case 0:
-            return 'C';
+            return 'C4';
         case 1:
-            return 'C#';
+            return 'C#4';
         case 2:
-            return 'D';
+            return 'D4';
         case 3:
-            return 'D#';
+            return 'D#4';
         case 4:
-            return 'E';
+            return 'E4';
         case 5:
-            return 'F';
+            return 'F4';
         case 6:
-            return 'F#';
+            return 'F#4';
         case 7:
-            return 'G';
+            return 'G4';
         case 8:
-            return 'G#';
+            return 'G#4';
         case 9:
-            return 'A';
+            return 'A4';
         case 10:
-            return 'A#';
+            return 'A#4';
         case 11:
-            return 'B';
+            return 'B4';
         default:
-            return '';
+            return 'C4';
     }
 };
