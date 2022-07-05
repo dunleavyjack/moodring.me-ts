@@ -26,7 +26,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     top: 15px;
-    cursor: pointer;
     z-index: 999;
     width: 100%;
     text-align: center;
@@ -38,7 +37,6 @@
     font-size: 20px;
     position: relative;
     text-align: right;
-    cursor: pointer;
     word-wrap: normal;
     z-index: 999;
     white-space: nowrap;
@@ -47,20 +45,8 @@
     padding-bottom: 7px;
 }
 
-
-.about:hover,
-.about:active {
-    border-bottom: 1px solid #ffffff;
+.pointer {
+    cursor: pointer;
 }
-/* 
-@media screen and (max-width: 600px) {
-    .home {
-        font-size: 28px;
-    }
 
-    .about {
-        top: 21px;
-        right: 10px;
-        font-size: 15px;
-    }
-} */
+
