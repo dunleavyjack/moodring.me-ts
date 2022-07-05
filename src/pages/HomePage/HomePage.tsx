@@ -26,7 +26,7 @@ const HomePage: React.FC = () => {
 
     const handleDemoLogin = (): void => {
         dispatch(setDemoStatus(true));
-        navigate('/mood');
+        navigate('/analyzing');
     };
 
     return (

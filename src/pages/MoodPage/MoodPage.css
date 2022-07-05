@@ -64,7 +64,7 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 660px) {
     .mood-description {
         font-size: 20px;
     }

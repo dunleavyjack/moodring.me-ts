@@ -47,6 +47,7 @@ export interface StandardFeatures {
 
 export interface Mood {
     mood: string;
+    moodImageURL: string;
     emotionalFeatures: EmotionalFeatures[];
     standardFeatures: StandardFeatures[];
 }
