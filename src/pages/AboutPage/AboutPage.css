@@ -4,14 +4,21 @@
 }
 
 .about-section{
-    width: 90%;
-    max-width: 600px;
+    width: 90vw;
     text-align: center;
 }
 
 .about-text{
     font-family: Unna;
+    margin-top: 0px;
+    font-size: 20px;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
     line-height: 125.25%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .svg-header{
@@ -30,4 +37,11 @@
     text-decoration: none;
     /* color: #ffe800;  */
     color: #B0BFF7;
+}
+
+.profile-grid{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }

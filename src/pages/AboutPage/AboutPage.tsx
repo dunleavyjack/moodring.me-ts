@@ -3,11 +3,40 @@ import Navbar from '../../components/Navbar/Navbar';
 import howMoodringWasBuilt from '../../assets/pageAssets/how-built.svg';
 import privacyHeader from '../../assets/pageAssets/privacy-header.svg';
 import privacyFooter from '../../assets/pageAssets/privacy-bottom.svg';
-// import jack from '../../assets/pageAssets/jack-name.svg';
-// import jeonghye from '../../assets/pageAssets/jeonghye-name.svg';
-// import aboutUs from '../../assets/pageAssets/about-us.svg';
+import jack from '../../assets/pageAssets/jack-name.svg';
+import jackURL from '../../assets/pageAssets/jack-profile.svg';
+import CreatorProfile from '../../components/CreatorProfile/CreatorProfile';
+import jeonghyeURL from '../../assets/pageAssets/jeonghye-profile.svg';
+import jeonghye from '../../assets/pageAssets/jeonghye-name.svg';
+import linkedin from '../../assets/pageAssets/linkedin.svg';
+import github from '../../assets/pageAssets/github.svg';
+import medium from '../../assets/pageAssets/medium.svg';
+import aboutUs from '../../assets/pageAssets/about-us.svg';
 import aboutMoodRing from '../../assets/pageAssets/about-moodring.svg';
 import './AboutPage.css';
+import { Links } from '../../types';
+
+const jackLinks: Links[] = [
+    {
+        href: 'https://www.linkedin.com/in/jackdunleavy',
+        img: linkedin,
+    },
+    {
+        href: 'https://medium.com/@jackdunleavy',
+        img: medium,
+    },
+    {
+        href: 'https://github.com/dunleavyjack',
+        img: github,
+    },
+];
+
+const jeonghyeLinks: Links[] = [
+    {
+        href: 'https://www.linkedin.com/in/jeonghye/',
+        img: linkedin,
+    },
+];
 
 const AboutPage: React.FC = () => {
     return (
@@ -22,10 +51,10 @@ const AboutPage: React.FC = () => {
                     className="svg-header top"
                 />
                 <h2 className="about-text">
-                    Your mood is determined based on different analytics (tempo,
-                    energy, acousticness, etc.) found in each song. That data is
-                    compared and matched with one of over thirty moods to
-                    display.
+                    Mood Ring imports your 20 most recently played songs from
+                    Spotify and analyzes the analytics Spotify incorporates for
+                    each song (such as tempo, energy, acousticness, etc.) to
+                    create an overall picture of how you might be feeling today.
                     <br />
                     <br />
                     Moods are strange and ineffable. But hopefully it connected
@@ -34,9 +63,23 @@ const AboutPage: React.FC = () => {
             </section>
 
             {/* About us */}
-            {/* <section className="about-section">
+            <section className="about-section">
                 <img alt="About Us" src={aboutUs} className="svg-header top" />
-            </section> */}
+                <div className="profile-grid">
+                    <CreatorProfile
+                        nameImg={jack}
+                        profileImg={jackURL}
+                        title="Developer"
+                        links={jackLinks}
+                    />
+                    <CreatorProfile
+                        nameImg={jeonghye}
+                        profileImg={jeonghyeURL}
+                        title="Designer"
+                        links={jeonghyeLinks}
+                    />
+                </div>
+            </section>
 
             {/* How Moodring Was Built */}
             <section className="about-section">
@@ -46,27 +89,68 @@ const AboutPage: React.FC = () => {
                     className="svg-header top"
                 />
                 <h2 className="about-text">
-                    This project was designed with Figma and written in
-                    TypeScript using React, Redux, NestJS (as a backend server),
-                    along with the Spotify Web API. Both the UI and backend are
-                    hosted with Vercel and the full code is available to view{' '}
+                    {'This project was written in TypeScript and built with '}
+                    <a className="custom-link" href="https://reactjs.org/">
+                        React
+                    </a>
+                    {', '}
+                    <a className="custom-link" href="https://redux.js.org/">
+                        Redux
+                    </a>
+                    ,{' '}
+                    <a className="custom-link" href="https://tonejs.github.io/">
+                        Tone.js
+                    </a>{' '}
+                    (for the playable synth) and a{' '}
+                    <a
+                        className="custom-link"
+                        href="https://nestjs.com/Nest.js"
+                    >
+                        Nest.js backend
+                    </a>
+                    {' for server side calls to '}
+                    <a
+                        className="custom-link"
+                        href="https://developer.spotify.com/documentation/web-api/"
+                    >
+                        the Spotify Web API
+                    </a>{' '}
+                    for song data and OAuth2.
+                    <br />
+                    <br />
+                    Both the UI and backend are hosted with Vercel and you can
+                    view the full
                     <a
                         className="custom-link"
                         href="https://github.com/dunleavyjack/moodring.me"
                     >
-                        here (UI)
-                    </a>{' '}
-                    and{' '}
+                        {' '}
+                        UI code{' '}
+                    </a>
+                    {' and '}{' '}
                     <a
                         className="custom-link"
                         href="https://github.com/dunleavyjack/moodring.me-backend"
                     >
-                        here (backend)
-                    </a>
-                    .
+                        backend code
+                    </a>{' '}
+                    on GitHub.
                     <br />
-                    You can also see an earlier beta version (written in
-                    JavaScript){' '}
+                    <br />
+                    {'Jeonghye used '}
+                    <a
+                        className="custom-link"
+                        href="https://www.figma.com/design/"
+                    >
+                        Figma
+                    </a>
+                    {
+                        ' for the amazing design including all the incredible icons, images, and text.'
+                    }
+                    <br />
+                    <br />
+                    An earlier version (written a year ago in JavaScript) can
+                    still be viewed here{' '}
                     <a
                         className="custom-link"
                         href="https://moodring.vercel.app/"
@@ -85,8 +169,15 @@ const AboutPage: React.FC = () => {
                     className="svg-header top"
                 />
                 <h2 className="about-text">
-                    The complete Spotify privacy policy can be viewed here,
-                    which includes approved third-party projects like this one.
+                    The complete Spotify privacy policy can be viewed{' '}
+                    <a
+                        className="custom-link"
+                        href="https://www.spotify.com/us/legal/privacy-policy/"
+                    >
+                        here
+                    </a>
+                    , which includes approved third-party projects like this
+                    one.
                 </h2>
                 <img
                     alt="Privacy footer"
@@ -96,8 +187,7 @@ const AboutPage: React.FC = () => {
             </section>
 
             <section className="about-section">
-                <h2 className="about-text">MoodRing</h2>
-                <h2 className="about-text">Atlanta 2022 :)</h2>
+                <h2 className="about-text">Mood Ring | Atlanta 2022 :)</h2>
             </section>
         </main>
     );
