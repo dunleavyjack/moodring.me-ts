@@ -51,3 +51,8 @@ export interface Mood {
     emotionalFeatures: EmotionalFeatures[];
     standardFeatures: StandardFeatures[];
 }
+
+export interface Links {
+    href: string;
+    img: string;
+}
