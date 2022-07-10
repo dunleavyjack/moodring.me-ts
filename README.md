@@ -12,7 +12,7 @@ The backend for the project, built with NestJS, can be viewed [here](https://git
 $ npm install
 ```
 
-## Running MoodRing.me Backend
+## Running MoodRing.me
 
 ```bash
 # development
